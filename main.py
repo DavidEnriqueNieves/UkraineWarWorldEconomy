@@ -30,8 +30,10 @@ def date_to_quarter(date_str):
 
 
 # COUNT_KEYS = ["CHINA", "EURO", "USA", "JAP"]
+# COUNT_KEYS = ["EURO"]
 COUNT_KEYS = ["CHINA"]
-METRIC_KEYS = ["CPI", "GDP", "INT", "UNEMP", "SPENDING_PERCENT_OF_GDP"]
+METRIC_KEYS = ["GDP"]
+# METRIC_KEYS = ["CPI", "GDP", "INT", "UNEMP", "SPENDING_PERCENT_OF_GDP"]
 
 import pandas as pd
 
@@ -45,7 +47,7 @@ quarterly_data
 
 def quarter_avg(quarter_arr):
     if(len(quarter_arr) == 1):
-      return float(quarter_arr[0])
+      return quarter_arr[0]
     else:
       sum = 0.0
       for x in quarter_arr:
@@ -92,7 +94,7 @@ def process_2_quarterly_data(df : pd.DataFrame) -> list:
         # print(f"{quarter_arrs[quarter_str]=}"
         quarter_arr = quarter_arrs[quarter_str]
         quarter_arr = quarter_avg(quarter_arr)
-        quarter_arrs[quarter_str] = float(quarter_arr)
+        quarter_arrs[quarter_str] = quarter_arr
         # print(f"{quarter_arrs=}")
     return pd.DataFrame.from_dict(quarter_arrs, orient='index')
 
@@ -114,6 +116,8 @@ for country in COUNT_KEYS:
   for metric in METRIC_KEYS:
     filename = f"./Data/{country}/{country}_{metric}.csv"
     try:  
+      # if country != "EURO" or metric != "INT":
+        #  continue
       df = pd.read_csv (filename)
       print(f"{df=}")
       print(f"{df.columns=}")
@@ -134,123 +138,123 @@ for country in COUNT_KEYS:
       print(f"Could not find {filename}")
 
 
-# print("done")
-# # # quarterly_data["USA"]["UNEMP"], quarterly_data["USA"]["INT"], quarterly_data["USA"]["GDP"]
+# # print("done")
+# # # # quarterly_data["USA"]["UNEMP"], quarterly_data["USA"]["INT"], quarterly_data["USA"]["GDP"]
 
-for country in COUNT_KEYS:
-#   if(country == "CHINA"):
-#      continue
+# for country in COUNT_KEYS:
+# #   if(country == "CHINA"):
+# #      continue
   
-  # minimum length of metrics for any metric
-  min_met_indx = 100000000
-  last_quarters = []
-  first_quarters = []
+#   # minimum length of metrics for any metric
+#   min_met_indx = 100000000
+#   last_quarters = []
+#   first_quarters = []
 
-  for metric in METRIC_KEYS:
-      print(f"{country=}")
-      print(f"{metric=}")
-    #   print(f"{quarterly_data[country][metric].shape[0]=}")
-    #   print(f"{quarterly_data[country][metric].values.tolist()=}")
-    #   print(f"{quarterly_data[country][metric].index=}")
-    #   print(f"{dir(quarterly_data[country][metric])=}")
-      first_df_quarter = min(quarterly_data[country][metric].index)
-      last_df_quarter = max(quarterly_data[country][metric].index)
-    #   print(f"{first_df_quarter=}")
-    #   print(f"{last_df_quarter=}")
-    #   len_met = len(quarterly_data[country][metric].values.tolist())
-      # frames.append(quarterly_data[country][metric])
-      # csv_df = pd.DataFrame
+#   for metric in METRIC_KEYS:
+#       print(f"{country=}")
+#       print(f"{metric=}")
+#     #   print(f"{quarterly_data[country][metric].shape[0]=}")
+#     #   print(f"{quarterly_data[country][metric].values.tolist()=}")
+#     #   print(f"{quarterly_data[country][metric].index=}")
+#     #   print(f"{dir(quarterly_data[country][metric])=}")
+#       first_df_quarter = min(quarterly_data[country][metric].index)
+#       last_df_quarter = max(quarterly_data[country][metric].index)
+#     #   print(f"{first_df_quarter=}")
+#     #   print(f"{last_df_quarter=}")
+#     #   len_met = len(quarterly_data[country][metric].values.tolist())
+#       # frames.append(quarterly_data[country][metric])
+#       # csv_df = pd.DataFrame
 
-      first_quarters.append(first_df_quarter)
-      last_quarters.append(last_df_quarter) 
+#       first_quarters.append(first_df_quarter)
+#       last_quarters.append(last_df_quarter) 
  
-  print(f"{last_quarters=}")
-  print(f"{first_quarters=}")
-  # lowest upper bound (supremum)
-#   print(f"{min(last_quarters)=}")
-  lub = min(last_quarters)
-  lub = pd.to_datetime(lub)
-#   print(f"{lub=}")
-#   greatest lower bound (infimum)
-#   print(f"{max(first_quarters)=}")
-  glb = max(first_quarters)
-  glb = pd.to_datetime(glb)
-  print(f"{glb=}")
-  # check if every metric's lengths match
-#   assert
-  df = pd.DataFrame()
-  #   first_length = 0
-  for i, metric in enumerate(METRIC_KEYS):
-      try:
+#   print(f"{last_quarters=}")
+#   print(f"{first_quarters=}")
+#   # lowest upper bound (supremum)
+# #   print(f"{min(last_quarters)=}")
+#   lub = min(last_quarters)
+#   lub = pd.to_datetime(lub)
+# #   print(f"{lub=}")
+# #   greatest lower bound (infimum)
+# #   print(f"{max(first_quarters)=}")
+#   glb = max(first_quarters)
+#   glb = pd.to_datetime(glb)
+#   print(f"{glb=}")
+#   # check if every metric's lengths match
+# #   assert
+#   df = pd.DataFrame()
+#   #   first_length = 0
+#   for i, metric in enumerate(METRIC_KEYS):
+#       try:
           
           
-          met_list = quarterly_data[country][metric].values.tolist()
-        #   print(f"{met_list=}")
-          indices = quarterly_data[country][metric].index.tolist()
+#           met_list = quarterly_data[country][metric].values.tolist()
+#         #   print(f"{met_list=}")
+#           indices = quarterly_data[country][metric].index.tolist()
   
-        #   assert glb in indices
-        #   assert lub in indices
-        #   least_indx = indices.index(glb)
-        #   most_indx = indices.index(lub)
+#         #   assert glb in indices
+#         #   assert lub in indices
+#         #   least_indx = indices.index(glb)
+#         #   most_indx = indices.index(lub)
   
           
-        #   bnd_met_list = met_list[least_indx : most_indx]
-        #   bnd_indices =  indices[least_indx : most_indx]
+#         #   bnd_met_list = met_list[least_indx : most_indx]
+#         #   bnd_indices =  indices[least_indx : most_indx]
   
-        #   assert len(bnd_indices) == len(bnd_met_list)
+#         #   assert len(bnd_indices) == len(bnd_met_list)
   
-        #   assert glb == indices[least_indx]
-        #   assert lub == indices[most_indx]
+#         #   assert glb == indices[least_indx]
+#         #   assert lub == indices[most_indx]
 
-          quart_df = quarterly_data[country][metric]
-          df_bounded = quart_df.loc[(pd.to_datetime(quart_df.index) >= glb) & (pd.to_datetime(quart_df.index) <= lub)]
-          vals = [x[0] for x in df_bounded.values.tolist()]
-          df[metric] = vals
-          df["quarter"] = df_bounded.index.tolist()
-          print(f"{df_bounded=}")
+#           quart_df = quarterly_data[country][metric]
+#           df_bounded = quart_df.loc[(pd.to_datetime(quart_df.index) >= glb) & (pd.to_datetime(quart_df.index) <= lub)]
+#           vals = [x[0] for x in df_bounded.values.tolist()]
+#           df[metric] = vals
+#           df["quarter"] = df_bounded.index.tolist()
+#           print(f"{df_bounded=}")
 
           
-        #   assert len(bnd_indices) == quarter_diff + 1
+#         #   assert len(bnd_indices) == quarter_diff + 1
   
   
-  #         print(f"{type(least_indx)=}")
-  #         print(f"{least_indx=}")
+#   #         print(f"{type(least_indx)=}")
+#   #         print(f"{least_indx=}")
   
-#   #         try:
-#   #          bnd_indices[0] == glb
-#   #          bnd_indices[-1] == lub
-#   #         except:
-#   #            continue
-#   #         bnd_met_list = [x[0] for x in met_list]
+# #   #         try:
+# #   #          bnd_indices[0] == glb
+# #   #          bnd_indices[-1] == lub
+# #   #         except:
+# #   #            continue
+# #   #         bnd_met_list = [x[0] for x in met_list]
   
-#   #         # print(f"{metric=}")
-#   #         # if i == 0:
-#   #         #    first_length = len(bnd_met_list)
-#   #         # else:
-#   #         #    assert len(bnd_met_list) == first_length
-#   #         #    continue
-#   #         # assert glb == indices[least_indx]
-#   #         # assert lub == indices[most_indx]
-#   #         # assert least_indx != -1
-#   #         # assert most_indx != -1
+# #   #         # print(f"{metric=}")
+# #   #         # if i == 0:
+# #   #         #    first_length = len(bnd_met_list)
+# #   #         # else:
+# #   #         #    assert len(bnd_met_list) == first_length
+# #   #         #    continue
+# #   #         # assert glb == indices[least_indx]
+# #   #         # assert lub == indices[most_indx]
+# #   #         # assert least_indx != -1
+# #   #         # assert most_indx != -1
   
-#   #         # try:
-#   #         print(f"{len(bnd_met_list)=}")
-#   #         # if(metric == "CPI"):
-#   #         #    raise RuntimeError
-#   #         #    break
-#   #         # df[metric]= met_lists
-#   #         # except ValueError as e:
+# #   #         # try:
+# #   #         print(f"{len(bnd_met_list)=}")
+# #   #         # if(metric == "CPI"):
+# #   #         #    raise RuntimeError
+# #   #         #    break
+# #   #         # df[metric]= met_lists
+# #   #         # except ValueError as e:
   
-      except KeyError:  
-          print(f"Key {metric} not found for {country}")
-          # print(f"{len(met_list)}")
-          # print(f"{type(met_list)}")
-          print(f"{df=}")
+#       except KeyError:  
+#           print(f"Key {metric} not found for {country}")
+#           # print(f"{len(met_list)}")
+#           # print(f"{type(met_list)}")
+#           print(f"{df=}")
       
 
     
-      df.to_csv(f"./{country}-bounded.csv", encoding='utf-8')
+#       df.to_csv(f"./{country}-bounded-new.csv", encoding='utf-8')
     
 # #   result = pd.concat(frames)
 # #   print(f"{result=}")
