@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animated Map of Countries</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <style>
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      #map-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+      }
+
+      #map-tooltip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      #map-tooltip.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map-container"></div>
+
+    <script>
+      // Define some data
+      const data = {
+        "2020": {
+          "USA": 2,
+          "Canada": 3,
+          "Mexico": 4
+        },
+        "2021": {
+          "USA": 10,
+          "Canada": 12,
+          "Mexico": 12
+        },
+        "2022": {
+          "USA": 20,
+          "Canada": 33,
+          "Mexico": 30
+        }
+      };
+
+      const country_codes = {
+
+	      840 : "USA",
+	      124 : "Canada",
+	      484 : "Mexico",
+	      826 : "UK",
+	      356 : "India",
+	      392 : "Japan",
+	      156 : "China",
+	      276 : "Germany",
+	      250 : "France",
+	      380 : "Italy",
+	      724 : "Spain",
+	      554 : "New Zealand",
+	      643 : "Russia",
+      }
+
+      // Define some constants
+      const width = 960;
+      const height = 500;
+      const projection = d3.geoMercator()
+	      .scale(150)
+	      .translate([width / 2, height / 1.5]);
+
+      // Define the SVG container
+      const svg = d3.select("#map-container")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      // Define the tooltip
+      const tooltip = d3.select("#map-container")
+        .append("div")
+        .attr("id", "map-tooltip");
+
+      // Load the GeoJSON data
+      d3.json("https://d3js.org/world-50m.v1.json").then(function(geoJSON) {
+        // Convert the data to a format that D3 can use
+        const countries = topojson.feature(geoJSON, geoJSON.objects.countries);
+	console.log(countries);
+
+        // Draw the map
+        const path = d3.geoPath(projection);
+
+        svg.selectAll("path")
+          .data(countries.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+	  .attr("class", "country")
+
+          .attr("fill", "#ccc")
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 0.5)
+          .on("mouseover", function(event, d) {
+
+
+	    // Get the country name and ISO code
+            const name = country_codes[d.id];
+		  console.log("Logging country name");
+		  console.log(name);
+
+		  console.log("Logging country name");
+		  if(name != undefined) {
+			  tooltip.html(name)
+				  .classed("show", true)
+				  .style("left", event.pageX + "px")
+				  .style("top", event.pageY + "px");
+
+		  }
+          })
+          .on("mousemove", function(event) {
+            tooltip.style("left", event.pageX + "px")
+              .style("top", event.pageY + "px");
+          })
+          .on("mouseout", function() {
+            tooltip.classed("show", false);
+          });
+
+        // Animate the map
+        const years = Object.keys(data);
+        let currentYearIndex = 0;
+
+       
+// Define the animation function
+const animateMap = function() {
+// Get the current year's data
+const year = years[currentYearIndex];
+const values = data[year];
+
+
+
+// Update the map colors
+      svg.selectAll("path")
+        .attr("fill", function(d) {
+          const iso = d.properties.iso_a3;
+            const name = country_codes[d.id];
+          if (values.hasOwnProperty(name)) {
+		  console.log("Entry found for country");
+		console.log(name);
+            return d3.interpolateYlOrRd(values[name] / d3.max(Object.values(values)));
+          } else {
+            return "#FF0000";
+          }
+        });
+
+      // Update the year label
+      d3.select("#year-label")
+        .text(year);
+
+      // Move to the next year
+      currentYearIndex = (currentYearIndex + 1) % years.length;
+
+      // Call the function again after a delay
+      setTimeout(animateMap, 1000);
+    };
+
+    // Add the year label
+    svg.append("text")
+      .attr("id", "year-label")
+      .attr("x", 20)
+      .attr("y", 20)
+      .attr("font-size", 16)
+      .attr("font-weight", "bold")
+      .text(years[0]);
+
+    // Start the animation
+    animateMap();
+  });
+</script>
+
+
+ </body>
+</html>
