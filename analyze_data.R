@@ -1,4 +1,5 @@
 library(ggfortify)
+library(tseries)
 install.packages("gptstudio")
 library(forecast)
 Sys.setenv(OPENAI_API_KEY = "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")
@@ -110,6 +111,8 @@ plot_residuals <- function() {
   acf(pre_war$Close, type="correlation", main=plot_title)
   dev.off()
   
+  adf.test(all_data$Close)
+  
   
  #  df <- post_war
  #  df_title_str <- deparse(substitute(df))
@@ -118,5 +121,89 @@ plot_residuals <- function() {
  #  png(file_name)
  #  acf(df$Close, type="correlation", main=plot_title)
  #  dev.off()
+  
+  range(c(100, 5, 100))
+  
+  plot(dnorm(seq(-5,5, by=0.1)))
+  
+  
+  visualize_test <- function(statistic, df, alternative = "two.sided", alpha = 0.05, title = "") {
+    
+    # Set up plot window
+    # plot(-3:3, dnorm(-3:3), type="l", xlab="Statistic", ylab="Density", main=title, lwd=2)
+    plot(seq(-5,5, by=0.1), dnorm(seq(-5,5, by=0.1)), type="l", xlab="Statistic", ylab="Density", main=title, lwd=2)
+    # points(-3:3, dnorm(-3:3), type="l", xlab="Statistic", ylab="Density", main=title, lwd=2)
+    
+   # Determine critical values
+   if(alternative == "less") {
+     cv <- qt(alpha, df, lower.tail = TRUE)
+   } else if(alternative == "greater") {
+     cv <- qt(alpha, df, lower.tail = FALSE)
+   } else {
+     cv <- qt(alpha/2, df, lower.tail = TRUE)
+     cv <- c(-1*cv, cv)
+   }
+   
+   # Add critical value lines
+   for(i in 1:length(cv)) {
+     abline(v=cv[i], col="red")
+   }
+   
+   # Highlight test statistic if outside rejection region
+   if(alternative == "less" & statistic < cv | alternative == "greater" & statistic > cv | alternative == "two.sided" & abs(statistic) > abs(cv)) {
+     polygon(c(statistic, max(cv), max(cv), statistic), c(0, 0, dnorm(max(cv)), dnorm(statistic)), col="red", border=NA)
+   }
+    
+    x <- c(statistic)
+    y <- dnorm(statistic)
+    points(x,y )
+    
+  }
+  
+  
+  visualize_test <- function(statistic, df,path, alternative = "two.sided", alpha = 0.05, title = "") {
+    
+    # Set up plot window
+    
+    min_bound = min(statistic, -5)
+    max_bound = max(statistic, 5)
+    bound = max(abs(min_bound), abs(max_bound))
+    x <- seq(-1 * bound, bound, by=0.1)
+    y <- dt(x,df)
+    png(path)
+    plot(x, y, type="l", xlab="Statistic", ylab="Density", main=title, lwd=2)
+    
+    # Determine critical values
+    if(alternative == "less") {
+      cv <- qt(alpha, df, lower.tail = TRUE)
+    } else if(alternative == "greater") {
+      cv <- qt(alpha, df, lower.tail = FALSE)
+    } else {
+      cv <- qt(alpha/2, df, lower.tail = TRUE)
+      cv <- c(-1*cv, cv)
+    }
+    
+    # Add critical value lines
+    for(i in 1:length(cv)) {
+      abline(v=cv[i], col="red")
+    }
+    
+    # Add blue dot for test statistic
+    points(statistic, dt(statistic, df), col = "blue", pch = 19, cex = 2)
+    # polygon(c(x[x>= cv[0]] , max(x), cv[0]) ,  c(y[x>= cv[0]] , max(y), cv[0]) )
+    dev.off()
+    
+  }
+  
+  
+  
+  x <- rnorm(100, mean=1)
+  t <- (mean(x) - 0) / (sd(x) / sqrt(length(x)))
+  t
+  dnorm(t)
+ length(x)-1 
+  visualize_test(t, df=length(x)-1,path="/home/david/Documents/Semester10/MTH5324/Project/thing.png", alternative="two.sided", alpha=0.05, title="Hypothesis test for mean")
+  
+  
   
   

@@ -49,6 +49,8 @@ png(filename)
 acf(data$GDP, main=title)
 dev.off()
 
+adf.test(data$GDP)
+
 
 model <- Arima(pre_war$GDP, order = c(1, 1, 1), xreg = as.matrix(ind_vars))
 # corr_matrix <- cor(as.numeric(pre_war))
