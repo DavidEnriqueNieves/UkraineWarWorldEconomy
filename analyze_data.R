@@ -1,11 +1,8 @@
 library(ggfortify)
 library(tseries)
-install.packages("gptstudio")
 library(forecast)
-Sys.setenv(OPENAI_API_KEY = "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")
 require(usethis)
 library(ggplot2)
-edit_r_environ(scope = "project")
 
 # commod_names <- c("CrudeOil", "NatGas",  "Wheat",  "SoybeanOil" )
 # commod_names <- c("CrudeOil")
