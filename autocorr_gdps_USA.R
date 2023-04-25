@@ -3,7 +3,7 @@ library(forecast)
 library(tseries)
 
 countries <- c("USA", "EURO", "JAP" , "CHINA")
-country <- "CHINA"
+country <- "USA"
 country
 
 csv_name <- paste0("/home/david/Documents/Semester10/MTH5324/Project/" , country  , "-bounded-2012.csv")
@@ -72,10 +72,15 @@ title <- paste0("GDP ACF wrt " , country , " for " , df_name , " data")
 filename
 # title <- paste0("GDP Autocorrelation for ")
 png(filename)
-acf(pre_war$GDP, main=title)
+labelsD = data$quarter
+
+acf_dat <- acf(pre_war$GDP, main=title)
+plot(acf_dat, main=title)
 dev.off()
 
 df_name <- "pre_war"
+
+
 filename <- paste0("/home/david/Documents/Semester10/MTH5324/Project/acfs_gdp/", country, "-" , df_name, "-gdp_pacf.png")
 title <- paste0("GDP PACF wrt " , country , " for " , df_name , " data")
 filename
@@ -131,8 +136,9 @@ ind_vars
 ##############################################
 #                               p,d,q
 #                           pacf, df test, acf
+arima_params <- c(2,3,0)
 suffix <- "var1"
-params <- deparse(substitute(c(9,4,0)))
+params <- deparse(arima_params)
 params <- gsub(" ", "", params)
 params <- gsub("\\(", "", params)
 params <- gsub(")", "", params)
@@ -140,14 +146,15 @@ params <- gsub("c", "", params)
 params <- gsub(",", "-", params)
 params
 # ind_vars <- pre_war[ , c("CPI", "INT",  "SPENDING_PERCENT_OF_GDP", "CURRENCY" ) ]
-ind_vars <- pre_war[ , c( "SPENDING_PERCENT_OF_GDP", "CURRENCY", "INT" ) ]
+extraneous_vars <- c( "SPENDING_PERCENT_OF_GDP", "CURRENCY", "INT" )
+ind_vars <- pre_war[ , extraneous_vars ]
 
 # MAKE SURE THESE ORDER PARAMS MATCH THOSE ABOVE!
-model <- Arima(pre_war$GDP, order=c(9,4,0), xreg = as.matrix(ind_vars))
+model <- Arima(pre_war$GDP, order=arima_params, xreg = as.matrix(ind_vars))
 # corr_matrix <- cor(as.numeric(pre_war))
 # fcast <- forecast( model, xreg = as.matrix(ind_vars), h=1000 )
 # fcast <- forecast( auto.arima(pre_war), xreg = as.matrix(ind_vars), h=1000 )
-ind_vars <- war_data[ , c( "SPENDING_PERCENT_OF_GDP", "CURRENCY", "INT" ) ]
+ind_vars <- war_data[ , extraneous_vars ]
 war_data
 # ind_vars <- pre_war[ , c("INT", "UNEMP", "SPENDING_PERCENT_OF_GDP", "CURRENCY" ) ]
 fcast <- forecast( model, xreg = as.matrix(ind_vars), h=10 )
@@ -157,9 +164,32 @@ data$GDP
 filename <- paste0("/home/david/Documents/Semester10/MTH5324/Project/acfs_gdp/ARIMA_", country, "_params:", params,"_",suffix,  ".png")
 filename
 png(filename)
-plot(fcast)
-all_data
+
+labels
+entries <- seq(from=1, to=45, by=4)
+entry_str <- labels[entries]
+entry_str
+abbrv <- paste0("'", substring(entry_str, 3, length(entry_str)))
+abbrv
+
+# rm_indices <- seq(2, length(entries), by=2)
+# rm_indices
+# abbrv[rm_indices] = ""
+# abbrv
+# length(abbrv)
+# length(entries)
+# entries
+# abbrv[entries]
+params_str <- deparse(arima_params)
+params_str <- gsub(" ", "", params_str)
+params_str <- gsub("c", "", params_str)
+extraneous_vars_str <- deparse(extraneous_vars)
+extraneous_vars_str
+plot_title <- paste0("ARIMAX forecast of GDP ", params_str), " wrt " , 
+plot(fcast, xaxt="n", xlab="quarter",ylab="Dollars", main=)
+axis(1, at=entries, labels=abbrv)
 points(data$GDP)
+
 all_data
 dev.off()
 # autoplot(fcast, forecast.end =53)
