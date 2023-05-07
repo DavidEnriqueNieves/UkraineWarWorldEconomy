@@ -1,0 +1,35 @@
+,Europe
+CPI,https://fred.stlouisfed.org/series/EA19CPALTT01IXOBQ
+Interest Rate,https://fred.stlouisfed.org/series/ECBMRRFR
+Gov Spending,https://ec.europa.eu/eurostat/databrowser/view/GOV_10DD_EDPT1/default/table?lang=en
+GDP,https://fred.stlouisfed.org/series/CLVMEURSCAB1GQEA19
+UNEMP,https://fred.stlouisfed.org/series/LRHUTTTTEZM156S
+Currency,https://finance.yahoo.com/quote/EURUSD=X?p=EURUSD=X&.tsrc=fin-srch
+,China
+CPI,https://fred.stlouisfed.org/series/CHNCPIALLQINMEI
+Interest Rate,http://www.pbc.gov.cn/
+Gov Spending,https://www.imf.org/en/Publications/WEO/weo-database/2023/April
+GDP,https://fred.stlouisfed.org/series/MKTGDPCNA646NWDB
+UNEMP,https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=CN
+Currency,https://finance.yahoo.com/quote/CNY=X?p=CNY=X&.tsrc=fin-srch
+,Japan
+CPI,https://fred.stlouisfed.org/series/JPNCPIALLQINMEI
+Interest Rate,https://fred.stlouisfed.org/series/IRSTCB01JPM156N
+Gov Spending,https://data.worldbank.org/indicator/NE.CON.GOVT.ZS?locations=JP
+GDP,https://fred.stlouisfed.org/series/JPNRGDPEXP
+UNEMP,https://fred.stlouisfed.org/series/LRUN64TTJPQ156S
+Currency,https://finance.yahoo.com/quote/JPY=X?p=JPY=X&.tsrc=fin-srch
+,USA
+CPI,https://fred.stlouisfed.org/series/CPALWE01USQ661N
+Interest Rate,https://fred.stlouisfed.org/series/FEDFUNDS
+Gov Spending,https://fred.stlouisfed.org/series/FYFSGDA188S
+GDP,https://fred.stlouisfed.org/series/GDP
+UNEMP,https://fred.stlouisfed.org/series/UNRATE
+Currency,https://finance.yahoo.com/quote/DX=F?p=DX=F&.tsrc=fin-srch
+,
+,
+,Source
+Crude Oil,https://finance.yahoo.com/quote/CL=F?p=CL=F&.tsrc=fin-srch
+Natural Gas,https://finance.yahoo.com/quote/NG=F?p=NG=F&.tsrc=fin-srch
+Wheat,https://finance.yahoo.com/quote/ZW=F?p=ZW=F&.tsrc=fin-srch
+Soybean Oil,https://finance.yahoo.com/quote/ZS=F?p=ZS=F&.tsrc=fin-srch
