@@ -27,21 +27,6 @@ data, we establish noticeable effects on the economies of these nations
 from the war. Additionally, similar results can be illustrated on
 relevant commodity prices associated with Russia and Ukraine.
 
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
 
 Introduction 
 ============
@@ -324,7 +309,7 @@ country GDP data along with the associated exogeneous variables
 indicated in each of the accompanying plots as well as the commodity
 data. To get a sense of how different the post-war and pre-war
 situations are and thus to possibly conclude that there is a significant
-difference, the use of the ARIMA $\&$ ARIMAX confidence intervals can be
+difference, the use of the ARIMA & ARIMAX confidence intervals can be
 employed to see which of the predicted points lie outside of the 95%
 confidence intervals (colored in light grey in the plots) of the ARIMA
 and ARIMAX forecasts.
@@ -353,95 +338,26 @@ their respective Deviance Explained as a percentage.
 and independent variables with the respective adjusted R-squared value
 for pre-war and post-war datasets..](docs/report/summary_table.png)
 
- 
-
 ![*Table 2:* Table showing model types, rejecting predictors, and
 rejecting predictor estimates along with response variables for each
 nation](docs/report/pred_rej_table.png)
 
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
 
 ![*Table 3:* USA Pre-war results regarding explained GCV and REML
 percentages, along with the accompanying dependent and independent
-variables](docs/report/usa_prewar_gam_summary.png){width="6in"}
+variables](docs/report/usa_prewar_gam_summary.png)
 
 ![*Table 4:* European Union pre-war GAM results for currency and GDP
 responses and their associated Deviance Explained values as a
-percentage.](docs/report/eu_prewar_gam_summary.png){width="6in"}
+percentage.](docs/report/eu_prewar_gam_summary.png)
 
 ![*Table 5:* The PRC's Pre-war results regarding explained GCV and REML
 percentages, along with the accompanying dependent and independent
-variables](docs/report/china_prewar_gam_summary.png){width="6in"}
+variables](docs/report/china_prewar_gam_summary.png)
 
 ![*Table 6:* Japan's pre-war GAM results for currency and GDP responses
 and their associated Deviance Explained values as a
-percentage.](docs/report/japan_prewar_gam_summary.png){width="6in"}
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
+percentage.](docs/report/japan_prewar_gam_summary.png)
 
 Discussion and Conclusion 
 =========================
@@ -754,11 +670,5 @@ Ruckstuhl, A. (2016). Robust Fitting of Parametric Models Based on
 M-Estimation.
 
 P. J. Huber (1981) Robust Statistics. Wiley.
-
- 
-
- 
-
- 
 
 [^1]: 
