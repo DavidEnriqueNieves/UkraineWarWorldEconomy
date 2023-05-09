@@ -130,7 +130,7 @@ In sum, we see that Multiple Regression, Autoregression, and GAMS could
 be effectively utilized to measure the effects of the Russo-Ukrainian
 war on the world economy.
 
-Data {#data .unnumbered}
+Data 
 ====
 
 Our data is gathered from a wide variety of sources. Primarily, these
@@ -224,7 +224,7 @@ aggregating data with different date formats. Some examples of these
 scripts used for this purpose include `main.py` `commodi̇pynb`, and
 `change_date_format.py`.
 
-Methods {#methods .unnumbered}
+Methods 
 =======
 
 We begin with multiple regression. Various multiple regression models
@@ -329,7 +329,7 @@ employed to see which of the predicted points lie outside of the 95%
 confidence intervals (colored in light grey in the plots) of the ARIMA
 and ARIMAX forecasts.
 
-Results {#results .unnumbered}
+Results 
 =======
 
 Table 1 lists each respective model for each nation's dataset and the
@@ -443,7 +443,7 @@ percentage.](docs/report/japan_prewar_gam_summary.png){width="6in"}
 
  
 
-Discussion and Conclusion {#discussion-and-conclusion .unnumbered}
+Discussion and Conclusion 
 =========================
 
 To begin, we find many simultaneous significant independent variables in
@@ -656,7 +656,7 @@ global economy, we present significant results to illustrate that
 economic variables have shifted in light of a large scale war coming to
 Europe.
 
-References {#references .unnumbered}
+References 
 ==========
 
 9
