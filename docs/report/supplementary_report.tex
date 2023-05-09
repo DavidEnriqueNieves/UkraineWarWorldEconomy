@@ -1,0 +1,215 @@
+\documentclass[11pt,regno]{amsart}
+%\setlength{\hoffset}{-.5in}
+\setlength{\voffset}{-.25in}
+\usepackage{amssymb,latexsym}
+\usepackage{lscape}
+\usepackage{acronym}
+\usepackage{graphicx}
+\usepackage{url}		%does nice formatting of URLs
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{bm,nicefrac}
+\usepackage{siunitx}
+\usepackage{derivative}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{csquotes}
+\usepackage{caption}
+\newacro{Federal Reserve Economic Data}
+
+\DeclareMathOperator{\EX}{\mathbb{E}}% expected value
+
+\textwidth=6.175in
+\textheight=9.0in
+\headheight=13pt
+\calclayout
+
+
+
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\t}{{\texttt}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+
+\theoremstyle{plain}
+\numberwithin{equation}{section}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theorem}[thm]{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{example}[thm]{Example}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{proposition}[thm]{Proposition}
+
+\newcommand{\helv}{%
+  \fontfamily{phv}\fontseries{m}\fontsize{9}{11}\selectfont}
+
+\begin{document}
+%% replace the values in the next three lines by the correct information
+\setcounter{page}{1}
+
+\title{}
+\author{}
+\thispagestyle{plain}
+\begin{center}
+    \Large
+    \textbf{Analyzing the Russo-Ukrainian War's Effect On The World Economy Supplementary Document- Figures and Tables}
+        
+    \vspace{0.4cm}
+    \large
+    \textbf{David Nieves Acarón \& Sam Sharp}
+        
+    \vspace{0.4cm}
+    \textbf{MTH-5324}
+    
+    \vspace{0.4cm}
+    \textbf{Dr. Nezamoddin N. Kachouie}
+
+    \vspace{0.4cm}
+    \textbf{Spring 2023}
+\end{center}
+\email{dnievesacaro2018@my.fit.edu csharp2021@my.fit.edu}
+\thanks{}
+
+
+
+
+
+
+
+
+\maketitle % generates the title of the paper 
+\doublespacing 
+
+Here we supply additional figures and tables to supplement our main report.
+
+\begin{figure}
+\centering
+\centerline{ \mbox{
+\subfigure{\includegraphics[width=3in]{corr_plot_2.png}}  \quad
+\subfigure{\includegraphics[width=3in]{corr_plot_1.png}}
+}}
+\caption{Figures showing correlation plots for the regular data as well as the differenced data.}
+\end{figure}
+
+\begin{table}[]
+\caption*{\textit{Table 1:} European Union data Sources.}
+\begin{tabular}{|l|l|}
+\hline
+                       & \textbf{European Union}                                                                       \\ \hline
+\textbf{CPI}           & https://fred.stlouisfed.org/series/EA19CPALTT01IXOBQ                                  \\ \hline
+\textbf{Interest Rate} & https://fred.stlouisfed.org/series/ECBMRRFR                                           \\ \hline
+\textbf{Gov Spending}  & https://ec.europa.eu/eurostat/cache/metadata/en/gov\_10dd\_esms.htm \\ \hline
+\textbf{GDP}           & https://fred.stlouisfed.org/series/CLVMEURSCAB1GQEA19                                 \\ \hline
+\textbf{UNEMP}         & https://fred.stlouisfed.org/series/LRHUTTTTEZM156S                                    \\ \hline
+\textbf{Currency}      & https://finance.yahoo.com/quote/EURUSD=X?p=EURUSD=X\&.tsrc=fin-srch                   \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\caption*{\textit{Table 2:} People's Republic of China Data Sources.}
+\begin{tabular}{|l|l|}
+ \hline
+                       & \textbf{China}                                                   \\ \hline
+\textbf{CPI}           & https://fred.stlouisfed.org/series/CHNCPIALLQINMEI               \\ \hline
+\textbf{Interest Rate} & http://www.pbc.gov.cn/                                           \\ \hline
+\textbf{Gov Spending}  & https://www.imf.org/en/Publications/WEO/weo-database/2023/April  \\ \hline
+\textbf{GDP}           & https://fred.stlouisfed.org/series/MKTGDPCNA646NWDB              \\ \hline
+\textbf{UNEMP}         & https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=CN \\ \hline
+\textbf{Currency}      & https://finance.yahoo.com/quote/CNY=X?p=CNY=X\&.tsrc=fin-srch    \hline \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\caption*{\textit{Table 3:} Japanese Data Sources.}
+\begin{tabular}{|l|l|}
+\hline
+                       & \textbf{Japan}                                                   \\ \hline
+\textbf{CPI}           & https://fred.stlouisfed.org/series/JPNCPIALLQINMEI               \\ \hline
+\textbf{Interest Rate} & https://fred.stlouisfed.org/series/IRSTCB01JPM156N               \\ \hline
+\textbf{Gov Spending}  & https://data.worldbank.org/indicator/NE.CON.GOVT.ZS?locations=JP \\ \hline
+\textbf{GDP}           & https://fred.stlouisfed.org/series/JPNRGDPEXP                    \\ \hline
+\textbf{UNEMP}         & https://fred.stlouisfed.org/series/LRUN64TTJPQ156S               \\ \hline
+\textbf{Currency}      & https://finance.yahoo.com/quote/JPY=X?p=JPY=X\&.tsrc=fin-srch    \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\caption*{\textit{Table 4:} United States Data Sources.}
+\begin{tabular}{|l|l|}
+\hline
+                       & \textbf{USA}                                                \\ \hline
+\textbf{CPI}           & https://fred.stlouisfed.org/series/CPALWE01USQ661N          \\ \hline
+\textbf{Interest Rate} & https://fred.stlouisfed.org/series/FEDFUNDS                 \\ \hline
+\textbf{Gov Spending}  & https://fred.stlouisfed.org/series/FYFSGDA188S              \\ \hline
+\textbf{GDP}           & https://fred.stlouisfed.org/series/GDP                      \\ \hline
+\textbf{UNEMP}         & https://fred.stlouisfed.org/series/UNRATE                   \\ \hline
+\textbf{Currency}      & https://finance.yahoo.com/quote/DX=F?p=DX=F\&.tsrc=fin-srch \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\caption*{\textit{Table 5:} Commodities Data Sources.}
+\begin{tabular}{|l|l|}
+\hline
+                     & \textbf{Commodities Source}                                             \\ \hline
+\textbf{Crude Oil}   & https://finance.yahoo.com/quote/CL=F?p=CL=F\&.tsrc=fin-srch \\ \hline
+\textbf{Natural Gas} & https://finance.yahoo.com/quote/NG=F?p=NG=F\&.tsrc=fin-srch \\ \hline
+\textbf{Wheat}       & https://finance.yahoo.com/quote/ZW=F?p=ZW=F\&.tsrc=fin-srch \\ \hline
+\textbf{Soybean Oil} & https://finance.yahoo.com/quote/ZS=F?p=ZS=F\&.tsrc=fin-srch \\ \hline
+\end{tabular}
+\end{table}
+
+\
+
+\
+
+\
+
+\begin{figure}
+\centering
+\centerline{ \mbox{
+\subfigure{\includegraphics[width=2in]{EURO-pre_war-gdp_acf.png}}  
+\subfigure{\includegraphics[width=2in]{USA-pre_war-gdp_acf.png}}  
+\subfigure{\includegraphics[width=2in]{JAP-pre_war-gdp_acf.png}}  
+\subfigure{\includegraphics[width=2in]{CHINA-pre_war-gdp_acf.png}}  
+}}
+
+\caption{Autocorrelation functions for the pre-war data for all four countries.}
+
+\end{figure}
+
+\begin{figure}
+\centering
+\centerline{ \mbox{
+\subfigure{\includegraphics[width=2in]{EURO-pre_war-gdp_pacf.png}}  
+\subfigure{\includegraphics[width=2in]{USA-pre_war-gdp_pacf.png}}  
+\subfigure{\includegraphics[width=2in]{JAP-pre_war-gdp_pacf.png}}  
+\subfigure{\includegraphics[width=2in]{CHINA-pre_war-gdp_pacf.png}}  
+}}
+\caption{Partial Autocorrelation functions for the pre-war data for all four countries.}
+\end{figure}
+
+\begin{figure}
+\centering
+\centerline{ \mbox{
+\subfigure{\includegraphics[width=2in]{SoybeanOil-prewar-acf.png}}  
+\subfigure{\includegraphics[width=2in]{CrudeOil-prewar-acf.png}}  
+\subfigure{\includegraphics[width=2in]{NatGas-prewar-acf.png}}  
+\subfigure{\includegraphics[width=2in]{Wheat-prewar-acf.png}}  
+}}
+\caption{Autocorrelation functions for the pre-war data for all commodities.}
+\end{figure}
+
+\begin{figure}
+\centering
+\centerline{ \mbox{
+\subfigure{\includegraphics[width=2in]{SoybeanOil-prewar-pacf.png}}  
+\subfigure{\includegraphics[width=2in]{CrudeOil-prewar-pacf.png}}  
+\subfigure{\includegraphics[width=2in]{NatGas-prewar-pacf.png}}  
+\subfigure{\includegraphics[width=2in]{Wheat-prewar-pacf.png}}  
+}}
+\caption{Partial Autocorrelation functions for the pre-war data for all commodities.}
+\end{figure}
+\end{document}
